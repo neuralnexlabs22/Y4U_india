@@ -51,7 +51,7 @@ export default function AboutBrand() {
       <div className={styles.content}>
         <h2 ref={titleRef} className={styles.title}>WEAR UR STORY</h2>
         <p ref={textRef} className={styles.description}>
-          Y4U INDIA is more than fashion. Every piece represents individuality, confidence, and self-expression. Our collections are designed for people who want their style to tell their story.
+          Y4U INDIA is more than fashion. Every piece represents individuality, confidence, and self-expression. Our garments are designed for people who want their style to tell their story.
         </p>
       </div>
     </section>

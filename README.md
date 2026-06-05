@@ -22,4 +22,8 @@ Y4U INDIA is a premium fashion and lifestyle shopping experience built with mode
 
 ---
 
+<<<<<<< HEAD
 Y4U INDIA | Wear Ur Story
+=======
+Y4U INDIA | Wear Ur Story
+>>>>>>> 79c0a9f607492c5552931cd5c5fe2dfdc24e0c3f

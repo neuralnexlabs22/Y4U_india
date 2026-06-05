@@ -1,11 +1,9 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './BrandReveal.module.css';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-gsap.registerPlugin(ScrollTrigger);
+import Link from 'next/link';
 
 export default function BrandReveal() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -18,7 +16,7 @@ export default function BrandReveal() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      /* ── 1. Spin SVG circle continuously ── */
+      /* ── Spin SVG circle continuously ── */
       gsap.to(svgRef.current, {
         rotation: 360,
         duration: 25,
@@ -27,70 +25,19 @@ export default function BrandReveal() {
         transformOrigin: '50% 50%',
       });
 
-      /* ── 2. Entrance animations (on load / when section enters viewport) ── */
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      // Left image slides in from left
-      tl.fromTo(leftImgRef.current,
-        { x: -80, opacity: 0 },
-        { x: 0,   opacity: 1, duration: 1.2 },
-        0
-      );
-      // Right image slides in from right
-      tl.fromTo(rightImgRef.current,
-        { x: 80,  opacity: 0 },
-        { x: 0,   opacity: 1, duration: 1.2 },
-        0
-      );
-      // Center text staggers up
-      const spans = textRef.current?.querySelectorAll('span') ?? [];
-      tl.fromTo(spans,
-        { y: 60, opacity: 0, filter: 'blur(12px)' },
-        { y: 0,  opacity: 1, filter: 'blur(0px)', stagger: 0.12, duration: 0.9 },
-        0.2
-      );
-      // Categories + CTA
-      tl.fromTo('.br-sub',
-        { y: 20, opacity: 0 },
-        { y: 0,  opacity: 1, stagger: 0.15, duration: 0.7 },
-        0.7
-      );
-
-      /* ── 3. Scroll-linked parallax ── */
-      gsap.to(leftImgRef.current, {
-        y: 60,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=150%',
-          scrub: 1.2,
-        }
-      });
-      gsap.to(rightImgRef.current, {
-        y: -60,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=150%',
-          scrub: 1.2,
-        }
-      });
-
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.brandReveal}>
+    <section ref={sectionRef} className={`${styles.brandReveal} brand-reveal-container`}>
 
       {/* ── Left fashion image ── */}
-      <div ref={leftImgRef} className={styles.sidePanel}>
+      <div ref={leftImgRef} className={`${styles.sidePanel} brand-reveal-left-img`}>
         <img
-          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=960&auto=format&fit=crop"
-          alt="Women's fashion"
+          src="/genz_vintage_streetwear_1_1780592585786.png"
+          alt="Streetwear t-shirt cargo"
           className={styles.sideImg}
         />
         <div className={styles.sideFade} />
@@ -98,6 +45,13 @@ export default function BrandReveal() {
 
       {/* ── Centre: spinning circle + text ── */}
       <div ref={centerRef} className={styles.center}>
+        
+        {/* Giant background Y4U INDIA text */}
+        <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none opacity-[0.08] select-none whitespace-nowrap">
+          <h1 className="text-[10vw] font-bold tracking-widest text-outline uppercase" style={{ fontFamily: 'var(--font-serif)' }}>
+            Y4U INDIA
+          </h1>
+        </div>
 
         {/* SVG spinning ring */}
         <svg
@@ -122,27 +76,35 @@ export default function BrandReveal() {
         {/* Text block */}
         <div ref={textRef} className={styles.textBlock}>
           <h2 className={styles.headline}>
-            <span className={styles.line1}>WEAR</span>
-            <span className={styles.line2}>YOUR</span>
-            <span className={styles.line3}>STORY</span>
+            <span className={`${styles.line1} brand-reveal-span`}>WEAR</span>
+            <span className={`${styles.line2} brand-reveal-span`}>YOUR</span>
+            <span className={`${styles.line3} brand-reveal-span`}>STORY</span>
           </h2>
-          <p className={`${styles.categories} br-sub`}>
+          <p className={`${styles.categories} br-sub brand-reveal-sub`}>
             T-SHIRTS&nbsp;&nbsp;|&nbsp;&nbsp;HOODIES&nbsp;&nbsp;|&nbsp;&nbsp;BOTTOMS&nbsp;&nbsp;|&nbsp;&nbsp;OUTERWEAR
           </p>
           <Link
-            to="/collections/men"
-            className={`${styles.cta} br-sub`}
+            href="/shop"
+            className={`${styles.cta} br-sub brand-reveal-sub`}
           >
-            SHOP NOW <ArrowRight size={16} />
+            SHOP NOW +
           </Link>
+        </div>
+
+        {/* Bottom Nav Links */}
+        <div className={styles.bottomLinks}>
+          <Link href="/">HOME</Link>
+          <Link href="/shop">SHOP</Link>
+          <Link href="/about">ABOUT US</Link>
+          <Link href="/contact">CONTACT US</Link>
         </div>
       </div>
 
       {/* ── Right fashion image ── */}
-      <div ref={rightImgRef} className={styles.sidePanel}>
+      <div ref={rightImgRef} className={`${styles.sidePanel} brand-reveal-right-img`}>
         <img
-          src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=960&auto=format&fit=crop"
-          alt="Men's fashion"
+          src="/genz_vintage_streetwear_2_1780592599689.png"
+          alt="Streetwear hoodie cargo"
           className={styles.sideImg}
         />
         <div className={`${styles.sideFade} ${styles.sideFadeRight}`} />

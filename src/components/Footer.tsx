@@ -16,12 +16,11 @@ export default function Footer() {
 
           <div className={styles.linksGrid}>
             <div className={styles.linkGroup}>
-              <h4 className={styles.groupTitle}>COLLECTIONS</h4>
-              <a href="#" className={styles.link}>Men</a>
-              <a href="#" className={styles.link}>Women</a>
-              <a href="#" className={styles.link}>Footwear</a>
-              <a href="#" className={styles.link}>Accessories</a>
-              <a href="#" className={styles.link}>Watches</a>
+              <h4 className={styles.groupTitle}>SHOP</h4>
+              <a href="/shop/hoodies" className={styles.link}>Hoodies</a>
+              <a href="/shop/t-shirts" className={styles.link}>T-Shirts</a>
+              <a href="/shop/bottoms" className={styles.link}>Bottoms</a>
+              <a href="/shop/outerwear" className={styles.link}>Outerwear</a>
             </div>
 
             <div className={styles.linkGroup}>

@@ -8,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 const categories = ['New Arrivals', 'Trending', 'Best Sellers', 'Limited Edition'];
 
 const products = [
-  { id: 1, name: 'Premium Essential Hoodie', price: '₹4,999', img: 'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=600&auto=format&fit=crop' },
-  { id: 2, name: 'Urban Runner Sneakers', price: '₹8,999', img: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=600&auto=format&fit=crop' },
-  { id: 3, name: 'Classic Leather Watch', price: '₹12,499', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop' },
-  { id: 4, name: 'Oversized Denim Jacket', price: '₹6,499', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop' },
+  { id: 1, name: 'Streetwear Brown Hoodie', price: '₹4,999', img: '/streetwear_hoodie_brown_1780597970626.png' },
+  { id: 2, name: 'Streetwear White Tee', price: '₹2,499', img: '/streetwear_tee_white_1780597983223.png' },
+  { id: 3, name: 'Streetwear Zip-Up Black', price: '₹5,499', img: '/streetwear_zipup_black_1780597997906.png' },
+  { id: 4, name: 'Monogram Oversized Shirt', price: '₹3,499', img: '/monogram_shirt_1780589041147.png' },
 ];
 
 export default function ProductShowcase() {
