@@ -442,6 +442,7 @@ export default function AddProductPage() {
                 name="price"
                 value={formData.price}
                 onChange={handleInputChange}
+                onWheel={(e) => e.currentTarget.blur()}
                 required
                 min="0"
                 step="0.01"
@@ -466,6 +467,7 @@ export default function AddProductPage() {
                 name="stockQuantity"
                 value={formData.stockQuantity}
                 onChange={handleInputChange}
+                onWheel={(e) => e.currentTarget.blur()}
                 min="0"
                 placeholder="50"
                 className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:border-[var(--accent-1)] focus:outline-none transition-colors"

@@ -391,9 +391,10 @@ export async function addProduct(product: Omit<Product, "id">): Promise<Product>
 
 export async function updateProduct(
   id: string,
-  product: Partial<Product>
+  product: Partial<Omit<Product, "id">>
 ): Promise<void> {
-  console.log("Updating product:", product);
+  const now = new Date().toISOString();
+  console.log(`[updateProduct] Initiating update for ID: ${id}. Incoming price:`, product.price);
   console.log("Product ID:", id);
 
   if (!id) {
@@ -458,7 +459,19 @@ export async function updateProduct(
       if (Object.keys(payload).length > 0) {
         const { error } = await supabase.from("products").update(payload).eq("id", validRemoteProductId);
         if (error)
-    throw new Error(error?.message || JSON.stringify(error) || "Unknown error");
+          throw new Error(error?.message || JSON.stringify(error) || "Unknown error");
+      }
+
+      // Optimistically update memoryCache so the UI instantly reflects changes (e.g. price)
+      if (memoryCache) {
+        const idx = memoryCache.findIndex(p => p.id === id);
+        if (idx !== -1) {
+          memoryCache[idx] = {
+            ...memoryCache[idx],
+            ...product,
+            price: product.price !== undefined ? Number(product.price) : memoryCache[idx].price,
+          };
+        }
       }
 
       // 4. Update Images Table
@@ -499,8 +512,8 @@ export async function updateProduct(
               size: s,
               color: c,
               sku: `SKU-${validRemoteProductId}-${variantIndex++}-${Math.random().toString(36).slice(2, 5)}`,
-              stock_quantity: 10,
-              stock_status: "in_stock",
+              stock_quantity: product.stock !== undefined ? product.stock : (existing?.stock || 10),
+              stock_status: (product.stock !== undefined ? product.stock : (existing?.stock || 10)) > 0 ? "in_stock" : "out_of_stock",
             });
           }
         }

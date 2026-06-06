@@ -47,7 +47,7 @@ export default function AdminDashboard() {
   if (!loaded) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin w-8 h-8 border-2 border-[var(--accent-1)] border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-[#c9a227] border-t-transparent rounded-full" />
       </div>
     );
   }
@@ -91,7 +91,7 @@ export default function AdminDashboard() {
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
               Total Products
             </span>
-            <Package className="w-4 h-4 text-[var(--accent-1)]" />
+            <Package className="w-4 h-4 text-[#c9a227]" />
           </div>
           <p className="text-3xl font-black text-white">{products.length}</p>
         </motion.div>
@@ -202,10 +202,10 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link
           href="/admin/products/add"
-          className="group flex items-center gap-4 p-6 bg-[#070707] border border-white/5 rounded-2xl hover:border-[var(--accent-1)]/30 transition-all"
+          className="group flex items-center gap-4 p-6 bg-[#070707] border border-white/5 rounded-2xl hover:border-[#c9a227]/30 transition-all"
         >
-          <div className="w-12 h-12 rounded-xl bg-[var(--accent-1)]/10 flex items-center justify-center group-hover:bg-[var(--accent-1)]/20 transition-colors">
-            <PlusCircle className="w-5 h-5 text-[var(--accent-1)]" />
+          <div className="w-12 h-12 rounded-xl bg-[#c9a227]/10 flex items-center justify-center group-hover:bg-[#c9a227]/20 transition-colors">
+            <PlusCircle className="w-5 h-5 text-[#c9a227]" />
           </div>
           <div>
             <h3 className="font-bold text-white">Add Product</h3>
@@ -265,7 +265,7 @@ export default function AdminDashboard() {
                     {product.category} · {product.brand}
                   </p>
                 </div>
-                <span className="text-sm font-bold text-[var(--accent-1)]">
+                <span className="text-sm font-bold text-[#c9a227]">
                   {currency.format(product.price)}
                 </span>
               </Link>

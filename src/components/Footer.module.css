@@ -188,3 +188,24 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 3rem 1rem 1rem;
+  }
+  .brandName {
+    font-size: 2.5rem;
+  }
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .submitBtn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .socials {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

@@ -9,12 +9,12 @@ import {
   ReactNode,
 } from "react";
 
-const AUTH_KEY = "colour_seven_admin_auth";
+const AUTH_KEY = "y4uindia_admin_auth";
 const AUTH_EXPIRY_HOURS = 24;
 
 // Default admin credentials — change these for production
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "colour7admin";
+const ADMIN_USERNAME = "y4u@admin";
+const ADMIN_PASSWORD = "y4u@admin";
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;

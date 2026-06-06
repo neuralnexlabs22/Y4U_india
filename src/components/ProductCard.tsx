@@ -35,7 +35,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Image Container */}
       <div className="relative aspect-[3/4] overflow-hidden bg-[#ede5d9]">
         {product.isNew && (
-          <span className="absolute top-4 left-4 z-10 bg-primary-accent text-primary-bg text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+          <span className="absolute top-4 left-4 z-10 bg-primary-accent text-primary-bg text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
             New
           </span>
         )}
@@ -44,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           whileTap={{ scale: 0.9 }}
           className="absolute top-4 right-4 z-10 p-2 text-primary-accent/70 hover:text-primary-accent bg-primary-bg/80 hover:bg-primary-bg backdrop-blur-md rounded-full transition-all opacity-0 group-hover:opacity-100 shadow-md"
         >
-          <Heart className="w-4 h-4" />
+          <Heart className="w-4 h-4 md:w-5 md:h-5" />
         </motion.button>
         
         <Link href={productHref} className="absolute inset-0 block">
@@ -58,12 +58,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {/* Quick View Overlay */}
-        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
+        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20 hidden md:block">
           <Link href={productHref} className="block w-full">
             <button 
-              className="w-full bg-primary-accent text-primary-bg py-3 text-xs font-black uppercase tracking-widest shadow-lg hover:bg-secondary-accent hover:text-primary-accent transition-colors duration-300 flex items-center justify-center space-x-2 rounded-lg"
+              className="w-full bg-primary-accent text-primary-bg py-3 text-xs md:text-sm font-black uppercase tracking-widest shadow-lg hover:bg-secondary-accent hover:text-primary-accent transition-colors duration-300 flex items-center justify-center space-x-2 rounded-lg"
             >
-              <ShoppingCart className="w-3.5 h-3.5" />
+              <ShoppingCart className="w-4 h-4" />
               <span>QUICK VIEW</span>
             </button>
           </Link>
@@ -71,18 +71,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Info Section */}
-      <Link href={productHref} className="flex flex-col p-6 border-t border-primary-accent/5">
-        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-secondary-accent mb-1">
+      <Link href={productHref} className="flex flex-col p-4 md:p-6 border-t border-primary-accent/5">
+        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-secondary-accent mb-1">
           STREETWEAR
         </span>
-        <h3 className="text-sm font-black text-primary-accent uppercase tracking-wide mb-2 group-hover:text-secondary-accent transition-colors line-clamp-1 italic">
+        <h3 className="text-sm md:text-base font-black text-primary-accent uppercase tracking-wide mb-2 group-hover:text-secondary-accent transition-colors line-clamp-1 italic">
           {product.name}
         </h3>
         <div className="flex justify-between items-center mt-2 pt-2 border-t border-primary-accent/5">
-          <span className="text-[10px] font-black uppercase tracking-widest text-primary-accent/50 group-hover:text-secondary-accent transition-colors">
+          <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary-accent/50 group-hover:text-secondary-accent transition-colors">
             Explore
           </span>
-          <p className="text-sm font-bold text-primary-accent">
+          <p className="text-sm md:text-base font-bold text-primary-accent">
             ₹{product.price.toLocaleString("en-IN")}
           </p>
         </div>

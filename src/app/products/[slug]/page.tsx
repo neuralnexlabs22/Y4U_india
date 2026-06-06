@@ -14,6 +14,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 type ProductDetail = Product & {
   brands?: Brand | null;
@@ -34,6 +35,7 @@ export default function SupabaseProductDetail({
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -127,6 +129,54 @@ export default function SupabaseProductDetail({
 
   const images = product.product_images || [];
   const active = images[activeImage] || images[0];
+
+  const handleAddToCart = () => {
+    // Determine the product image, default to empty string if missing
+    const imageUrl = active?.image_url || "";
+    
+    // Safely parse price which might contain currency symbols or commas (e.g., '₹4,999')
+    const rawPrice = product.discount_price;
+    const numericPrice = typeof rawPrice === 'string' 
+      ? Number(rawPrice.replace(/[^0-9.]/g, ''))
+      : Number(rawPrice);
+
+    addToCart({
+      productId: product.id,
+      name: product.name,
+      price: numericPrice,
+      image: imageUrl,
+      size: selectedSize || undefined,
+      color: selectedColor || undefined,
+      quantity: 1,
+    });
+  };
+
+  const generateInquiryMessage = () => {
+    const categoryName = product.categories?.name || "Uncategorized";
+    const priceStr = `₹${Number(product.discount_price).toLocaleString("en-IN")}`;
+    const pageUrl = typeof window !== "undefined" ? window.location.href : "";
+    const imageUrl = active?.image_url || "";
+    const description = product.short_description || product.full_description || "";
+    const truncDesc = description.length > 150 ? description.substring(0, 150) + "..." : description;
+
+    let message = `Hello, I am interested in the following product:\n\n`;
+    message += `Product: ${product.name}\n`;
+    message += `Category: ${categoryName}\n`;
+    message += `Price: ${priceStr}\n`;
+    if (truncDesc) message += `Description: ${truncDesc}\n`;
+    message += `\n`;
+
+    if (selectedSize) message += `Selected Size: ${selectedSize}\n`;
+    if (selectedColor) message += `Selected Color: ${selectedColor}\n`;
+    
+    if (selectedSize || selectedColor) message += "\n";
+
+    message += `Product Link:\n${pageUrl}\n\n`;
+    message += `Product Image:\n${imageUrl}\n\n`;
+    message += `Please provide more details.`;
+
+    return encodeURIComponent(message);
+  };
 
   return (
     <div className="min-h-screen bg-primary-accent text-primary-bg font-sans">
@@ -291,20 +341,35 @@ export default function SupabaseProductDetail({
           )}
 
           <div className="flex flex-col gap-3 mt-6">
-            <button className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl bg-primary-accent text-xs font-black uppercase tracking-widest text-primary-bg hover:bg-secondary-accent hover:text-primary-accent transition-colors duration-300 shadow-md">
+            <button 
+              onClick={handleAddToCart}
+              className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl bg-primary-accent text-xs font-black uppercase tracking-widest text-primary-bg hover:bg-secondary-accent hover:text-primary-accent transition-colors duration-300 shadow-md"
+            >
               <ShoppingBag className="h-4 w-4" />
               Add to Cart
             </button>
             
-            <a 
-              href={`https://wa.me/919353812197?text=${encodeURIComponent(`Hi, I'm interested in the ${product.name} - Rs. ${product.discount_price}.${selectedSize && selectedSize !== "One Size" ? ` Size: ${selectedSize}.` : ""}${selectedColor && selectedColor !== "Default" ? ` Color: ${selectedColor}.` : ""} Please share details.`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] text-xs font-black uppercase tracking-widest text-black hover:brightness-110 transition-all shadow-md"
-            >
-              <MessageCircle className="h-4 w-4" />
-              WhatsApp Inquiry
-            </a>
+            <div className="grid grid-cols-2 gap-3">
+              <a 
+                href={`https://wa.me/919353812197?text=${generateInquiryMessage()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] text-[10px] font-black uppercase tracking-widest text-black hover:brightness-110 transition-all shadow-md"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp Inquiry
+              </a>
+              <a 
+                href={`https://ig.me/m/y4u_india?text=${generateInquiryMessage()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white hover:brightness-110 transition-all shadow-md"
+                style={{ background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Insta Inquiry
+              </a>
+            </div>
           </div>
 
           {/* Value Props */}

@@ -2,18 +2,18 @@ import { useRef } from 'react';
 import styles from './Hero.module.css';
 
 const gridImages = [
-  'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=600&auto=format&fit=crop',
+  '/hero_tshirt_1.png',   // Black oversized graphic tee
+  '/hero_shirt_2.png',    // Green plaid flannel overshirt
+  '/hero_casual_3.png',   // Olive linen shirt casual look
+  '/hero_tshirt_4.png',   // White oversized tee minimal
+  '/hero_polo_5.png',     // Navy blue polo
+  '/hero_shirt_6.png',    // Beige linen shirt flat lay
+  '/hero_tshirt_7.png',   // Brown vintage graphic tee
+  '/hero_denim_8.png',    // Light blue denim shirt
+  '/hero_street_9.png',   // Dark grey streetwear tee
+  '/hero_shirt_10.png',   // Maroon polo
+  '/hero_casual_11.png',  // Sage green camp collar shirt
+  '/hero_tee_12.png',     // Charcoal acid wash tee
 ];
 
 export default function Hero() {

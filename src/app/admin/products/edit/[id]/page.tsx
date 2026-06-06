@@ -394,6 +394,7 @@ export default function EditProductPage({
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              onWheel={(e) => e.currentTarget.blur()}
               required
               min="0"
               step="1"
@@ -409,6 +410,7 @@ export default function EditProductPage({
               type="number"
               value={stock}
               onChange={(e) => setStock(e.target.value)}
+              onWheel={(e) => e.currentTarget.blur()}
               required
               min="0"
               step="1"

@@ -73,6 +73,15 @@
   margin-top: 0.3rem;
 }
 
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+  .card {
+    width: 380px;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 0 2rem;
@@ -80,14 +89,36 @@
   .title {
     font-size: 2.5rem;
   }
-  .sliderContainer {
+  .wrapper {
     padding-left: 2rem;
   }
   .card {
-    width: 320px;
+    width: clamp(280px, 80vw, 350px);
     padding: 2rem;
   }
   .text {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .wrapper {
+    padding-left: 1rem;
+    gap: 1.5rem;
+  }
+  .card {
+    width: clamp(240px, 85vw, 300px);
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .text {
+    font-size: 1rem;
   }
 }

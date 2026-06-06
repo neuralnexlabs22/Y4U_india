@@ -30,11 +30,35 @@
   margin-right: 0.3em;
 }
 
+@media (max-width: 1024px) {
+  .description {
+    font-size: 2.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .aboutBrand {
-    padding: 6rem 2rem;
+    padding: 6rem 1.5rem;
+  }
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
   }
   .description {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutBrand {
+    padding: 4rem 1rem;
+  }
+  .title {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+  }
+  .description {
+    font-size: clamp(1.4rem, 8vw, 1.8rem);
   }
 }

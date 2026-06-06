@@ -37,7 +37,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: ".intro-stack",
           start: "top top",
-          end: "+=120%", // 1.2 viewports of scrolling
+          end: "+=120%", // Restore original 1.2 viewports
           scrub: 1,
           pin: true,
           pinSpacing: true,
@@ -123,7 +123,7 @@ export default function Home() {
         duration: 0.6
       }, 0.65);
 
-      // 3. Brand Reveal Parallax (scrubs as we finish the pin transition)
+      // 3. Brand Reveal Parallax (Original)
       mainTl.to(".brand-reveal-left-img img", {
         y: 50,
         ease: "none",

@@ -3,11 +3,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2rem 4rem;
+  padding: 1.5rem clamp(1.5rem, 4vw, 4rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
   mix-blend-mode: difference;
   color: #EAE2D6;
   pointer-events: none;
@@ -15,22 +15,26 @@
 
 .absoluteNav {
   position: absolute !important;
+  mix-blend-mode: normal;
+  color: var(--text-dark);
 }
 
 .navbar > * {
   pointer-events: auto;
 }
 
+/* ── Logo ── */
 .logoContainer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .logoIcon {
-  width: 40px;
-  height: 40px;
+  width: clamp(32px, 4vw, 40px);
+  height: clamp(32px, 4vw, 40px);
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid rgba(234, 226, 214, 0.2);
@@ -39,33 +43,197 @@
 .logoText {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   letter-spacing: 0.15em;
+  text-decoration: none;
+  color: inherit;
 }
 
+/* ── Desktop navigation links ── */
 .links {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
 }
 
 .links a {
   text-decoration: none;
   color: inherit;
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   transition: opacity 0.3s ease;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .links a:hover {
   opacity: 0.6;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cartBtn {
+  position: relative;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+  z-index: 200;
+}
+
+.cartBtn:hover {
+  transform: scale(1.1);
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary-accent);
+  color: var(--primary-bg);
+  font-size: 0.65rem;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(25%, -25%);
+  border: 2px solid var(--primary-bg); /* Use primary-bg since navbar mixes blend mode, but this provides a clean cut */
+}
+
+/* ── Hamburger (hidden on desktop) ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* ── Mobile Menu Overlay ── */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--primary-accent);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.mobileLinks a {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 700;
+  color: var(--primary-bg);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.mobileMenuOpen .mobileLinks a {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+}
+
+.mobileMenuOpen .mobileLinks a:nth-child(1) { transition-delay: 0.1s; }
+.mobileMenuOpen .mobileLinks a:nth-child(2) { transition-delay: 0.15s; }
+.mobileMenuOpen .mobileLinks a:nth-child(3) { transition-delay: 0.2s; }
+.mobileMenuOpen .mobileLinks a:nth-child(4) { transition-delay: 0.25s; }
+
+.mobileLinks a:hover {
+  color: var(--secondary-accent);
+  transform: scale(1.05);
+}
+
+/* ── Tablet: shrink link gaps ── */
+@media (max-width: 1024px) {
+  .links {
+    gap: 1.5rem;
+  }
+  .links a {
+    font-size: 0.7rem;
+  }
+}
+
+/* ── Mobile: hide links, show hamburger ── */
 @media (max-width: 768px) {
-  .navbar { padding: 1.5rem 2rem; }
-  .logoText { font-size: 1.2rem; }
-  .logoIcon { width: 32px; height: 32px; }
-  .links { display: none; }
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  .links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ── Small mobile ── */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  .logoIcon {
+    width: 30px;
+    height: 30px;
+  }
+  .logoText {
+    font-size: 1.1rem;
+  }
 }

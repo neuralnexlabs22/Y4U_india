@@ -52,7 +52,7 @@ function AdminLoginScreen() {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       {/* Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[rgba(207,242,39,0.06)] rounded-full filter blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[rgba(201,162,39,0.08)] rounded-full filter blur-[120px] pointer-events-none" />
 
       <div
         className={`relative w-full max-w-sm bg-[#070707] border border-white/10 rounded-3xl p-8 space-y-8 shadow-2xl ${
@@ -61,8 +61,8 @@ function AdminLoginScreen() {
       >
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-2xl bg-[var(--accent-1)]/10 border border-[var(--accent-1)]/20 flex items-center justify-center mb-4">
-            <Lock className="w-7 h-7 text-[var(--accent-1)]" />
+          <div className="w-16 h-16 rounded-2xl bg-[#c9a227]/10 border border-[#c9a227]/20 flex items-center justify-center mb-4">
+            <Lock className="w-7 h-7 text-[#c9a227]" />
           </div>
           <h1 className="text-xl font-black uppercase tracking-widest text-white">
             Admin Login
@@ -85,7 +85,7 @@ function AdminLoginScreen() {
               required
               autoFocus
               placeholder="Enter admin username"
-              className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:border-[var(--accent-1)] focus:outline-none transition-colors"
+              className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:border-[#c9a227] focus:outline-none transition-colors"
             />
           </div>
 
@@ -100,7 +100,7 @@ function AdminLoginScreen() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Enter password"
-                className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 pr-11 text-white text-sm placeholder-zinc-600 focus:border-[var(--accent-1)] focus:outline-none transition-colors"
+                className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 pr-11 text-white text-sm placeholder-zinc-600 focus:border-[#c9a227] focus:outline-none transition-colors"
               />
               <button
                 type="button"
@@ -125,7 +125,7 @@ function AdminLoginScreen() {
 
           <button
             type="submit"
-            className="w-full bg-[var(--accent-1)] text-black font-black uppercase tracking-widest text-xs py-3.5 rounded-xl hover:brightness-110 transition-all"
+            className="w-full bg-[#c9a227] text-black font-black uppercase tracking-widest text-xs py-3.5 rounded-xl hover:bg-[#d4af37] transition-all shadow-lg shadow-[#c9a227]/20"
           >
             Sign In
           </button>
@@ -177,7 +177,7 @@ function AdminLoadingScreen() {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 border-2 border-[var(--accent-1)]/20 border-t-[var(--accent-1)] rounded-full animate-spin" />
+        <div className="w-10 h-10 border-2 border-[#c9a227]/20 border-t-[#c9a227] rounded-full animate-spin" />
         <p className="text-xs text-zinc-500 uppercase tracking-widest font-bold">
           Loading...
         </p>
@@ -216,13 +216,9 @@ function AdminDashboardShell({ children }: { children: React.ReactNode }) {
         {/* Branding */}
         <div className="p-5 border-b border-white/5">
           <Link href="/admin" className="flex items-center gap-3">
-            <Image
-              src="/images/colour_seven_logo.png"
-              alt="Y4U INDIA"
-              width={36}
-              height={36}
-              className="rounded-lg"
-            />
+            <div className="w-9 h-9 rounded-lg bg-[#c9a227]/10 flex items-center justify-center border border-[#c9a227]/20">
+              <span className="text-[#c9a227] font-black text-sm tracking-tighter">Y4U</span>
+            </div>
             <div>
               <h1 className="text-sm font-black tracking-widest uppercase text-[#c9a227]">
                 Y4U INDIA
@@ -246,7 +242,7 @@ function AdminDashboardShell({ children }: { children: React.ReactNode }) {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   active
-                    ? "bg-[var(--accent-1)]/10 text-[var(--accent-1)] border border-[var(--accent-1)]/20"
+                    ? "bg-[#c9a227]/10 text-[#c9a227] border border-[#c9a227]/20"
                     : "text-zinc-400 hover:text-white hover:bg-white/5"
                 }`}
               >

@@ -166,6 +166,69 @@
 }
 
 @media (max-width: 900px) {
-  .sidePanel { display: none; }
-  .center { flex: 1; }
+  .brandReveal {
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+  }
+  .sidePanel { 
+    flex: 0 0 22vh;
+    height: 22vh; 
+    width: 100%;
+  }
+  .sideFade {
+    background: linear-gradient(to bottom, transparent 50%, var(--primary-bg) 100%);
+  }
+  .sideFadeRight {
+    background: linear-gradient(to bottom, transparent 50%, var(--primary-bg) 100%);
+  }
+  .center { 
+    flex: 1; 
+    padding: 1.5rem;
+    height: auto;
+    flex-direction: column;
+  }
+  .ring {
+    width: clamp(200px, 50vw, 300px);
+    height: clamp(200px, 50vw, 300px);
+  }
+  .headline {
+    font-size: clamp(3rem, 9vw, 5rem);
+  }
+  .categories {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+  }
+  .cta {
+    padding: 0.85rem 2.2rem;
+    font-size: 0.72rem;
+  }
+  .bottomLinks {
+    display: none;
+  }
 }
+
+@media (max-width: 480px) {
+  .sidePanel {
+    flex: 0 0 18vh;
+    height: 18vh;
+  }
+  .center {
+    padding: 1rem;
+  }
+  .headline {
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
+  }
+  .textBlock {
+    gap: 1rem;
+  }
+  .ring {
+    width: clamp(180px, 55vw, 250px);
+    height: clamp(180px, 55vw, 250px);
+  }
+  .cta {
+    padding: 0.75rem 1.8rem;
+    font-size: 0.65rem;
+  }
+}
+
