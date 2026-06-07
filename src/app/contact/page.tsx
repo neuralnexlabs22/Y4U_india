@@ -26,7 +26,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="uppercase tracking-widest text-sm font-semibold mb-2">Phone</h3>
-                    <p className="text-text-brown font-light">+91 9353812197</p>
+                    <p className="text-text-brown font-light">+91 6369726928</p>
                     <p className="text-primary-accent/40 text-sm mt-1">Mon-Sat 10am to 7pm</p>
                   </div>
                 </div>
@@ -37,9 +37,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="uppercase tracking-widest text-sm font-semibold mb-2">WhatsApp</h3>
-                    <p className="text-text-brown font-light">+91 9353812197</p>
+                    <p className="text-text-brown font-light">+91 6369726928</p>
                     <a 
-                      href="https://wa.me/919353812197" 
+                      href="https://wa.me/916369726928?text=Hi%20there%2C%20I%20would%20like%20to%20know%20more." 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="mt-2 text-sm underline underline-offset-4 hover:text-secondary-accent transition-luxury inline-block text-primary-accent font-bold"
@@ -55,7 +55,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="uppercase tracking-widest text-sm font-semibold mb-2">Location</h3>
-                    <p className="text-text-brown font-light">Bangalore, India</p>
+                    <p className="text-text-brown font-light">UKKADAM Coimbatore</p>
                     <p className="text-primary-accent/40 text-sm mt-1">Pan India Delivery Available</p>
                   </div>
                 </div>
@@ -66,7 +66,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="uppercase tracking-widest text-sm font-semibold mb-2">Email</h3>
-                    <p className="text-text-brown font-light">support@y4uindia.com</p>
+                    <p className="text-text-brown font-light">y4usecure@gmail.com</p>
                   </div>
                 </div>
 

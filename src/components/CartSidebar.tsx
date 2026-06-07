@@ -22,11 +22,11 @@ export default function CartSidebar() {
     subtotal,
   } = useCart();
   const { contactInfo } = useContactInfo();
-  const whatsappNumber = contactInfo?.whatsapp_number || "919353812197";
+  const whatsappNumber = contactInfo?.whatsapp_number || "916369726928";
 
 
 
-  const handleCheckout = () => {
+  const handleCheckout = (platform: "whatsapp" | "instagram") => {
     if (items.length === 0) return;
 
     let message = "Hello, I'd like to place an order from my cart:\n\n";
@@ -36,19 +36,33 @@ export default function CartSidebar() {
       if (item.size) message += `   Size: ${item.size}\n`;
       if (item.color) message += `   Color: ${item.color}\n`;
       message += `   Quantity: ${item.quantity}\n`;
-      message += `   Price: ${currency.format(item.price)}\n\n`;
+      message += `   Price: ${currency.format(item.price)}\n`;
+      if (item.image) {
+        let imageUrl = item.image;
+        if (!imageUrl.startsWith("http") && typeof window !== "undefined") {
+          imageUrl = `${window.location.origin}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
+        }
+        message += `   Image: ${imageUrl}\n`;
+      }
+      message += `\n`;
     });
 
     message += `*Order Subtotal: ${currency.format(subtotal)}*\n\n`;
     message += "Please provide payment and shipping details.";
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${whatsappNumber.replace(
-      /\D/g,
-      ""
-    )}?text=${encodedMessage}`;
-
-    window.open(whatsappUrl, "_blank");
+    if (platform === "whatsapp") {
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${whatsappNumber.replace(
+        /\D/g,
+        ""
+      )}?text=${encodedMessage}`;
+      window.open(whatsappUrl, "_blank");
+    } else if (platform === "instagram") {
+      navigator.clipboard.writeText(message).then(() => {
+        alert("Order details copied to clipboard! Please paste it in the Instagram chat.");
+        window.open("https://ig.me/m/y4u_india", "_blank");
+      });
+    }
   };
 
   return (
@@ -135,10 +149,16 @@ export default function CartSidebar() {
               <span>Subtotal</span>
               <span>{currency.format(subtotal)}</span>
             </div>
-            <button onClick={handleCheckout} className={styles.checkoutBtn}>
-              <Send size={18} />
-              Checkout via WhatsApp
-            </button>
+            <div className={styles.checkoutButtons}>
+              <button onClick={() => handleCheckout("whatsapp")} className={styles.checkoutBtn}>
+                <Send size={18} />
+                WhatsApp Checkout
+              </button>
+              <button onClick={() => handleCheckout("instagram")} className={styles.checkoutBtnInsta}>
+                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Insta Checkout
+              </button>
+            </div>
           </div>
         )}
       </div>

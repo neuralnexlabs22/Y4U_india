@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div className={styles.socials}>
-            <a href="#" className={styles.socialLink}>Instagram</a>
+            <a href="https://www.instagram.com/y4u_india/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>Instagram</a>
             <a href="#" className={styles.socialLink}>Twitter</a>
             <a href="#" className={styles.socialLink}>Tiktok</a>
           </div>

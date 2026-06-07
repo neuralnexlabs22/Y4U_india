@@ -224,3 +224,33 @@
   color: var(--primary-accent);
   transform: translateY(-2px);
 }
+
+.checkoutButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.checkoutBtnInsta {
+  width: 100%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: filter 0.3s, transform 0.2s;
+}
+
+.checkoutBtnInsta:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}

@@ -789,8 +789,14 @@ video {
 .h-8{
   height: 2rem;
 }
+.h-9{
+  height: 2.25rem;
+}
 .h-96{
   height: 24rem;
+}
+.h-\[18px\]{
+  height: 18px;
 }
 .h-\[2px\]{
   height: 2px;
@@ -804,6 +810,9 @@ video {
 .h-\[500px\]{
   height: 500px;
 }
+.h-\[50vh\]{
+  height: 50vh;
+}
 .h-\[60vh\]{
   height: 60vh;
 }
@@ -812,12 +821,6 @@ video {
 }
 .h-screen{
   height: 100vh;
-}
-.h-\[50vh\]{
-  height: 50vh;
-}
-.h-9{
-  height: 2.25rem;
 }
 .max-h-\[350px\]{
   max-height: 350px;
@@ -882,6 +885,12 @@ video {
 .w-8{
   width: 2rem;
 }
+.w-9{
+  width: 2.25rem;
+}
+.w-\[18px\]{
+  width: 18px;
+}
 .w-\[400px\]{
   width: 400px;
 }
@@ -894,9 +903,6 @@ video {
 }
 .w-full{
   width: 100%;
-}
-.w-9{
-  width: 2.25rem;
 }
 .min-w-0{
   min-width: 0px;
@@ -2839,6 +2845,36 @@ body {
 .CartSidebar_checkoutBtn__mL5nq:hover {
   background-color: var(--secondary-accent);
   color: var(--primary-accent);
+  transform: translateY(-2px);
+}
+
+.CartSidebar_checkoutButtons__2nUsb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.CartSidebar_checkoutBtnInsta__Yrhj_ {
+  width: 100%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: filter 0.3s, transform 0.2s;
+}
+
+.CartSidebar_checkoutBtnInsta__Yrhj_:hover {
+  filter: brightness(1.1);
   transform: translateY(-2px);
 }
 

@@ -152,28 +152,22 @@ export default function SupabaseProductDetail({
   };
 
   const generateInquiryMessage = () => {
-    const categoryName = product.categories?.name || "Uncategorized";
     const priceStr = `₹${Number(product.discount_price).toLocaleString("en-IN")}`;
-    const pageUrl = typeof window !== "undefined" ? window.location.href : "";
-    const imageUrl = active?.image_url || "";
-    const description = product.short_description || product.full_description || "";
-    const truncDesc = description.length > 150 ? description.substring(0, 150) + "..." : description;
+    let imageUrl = active?.image_url || "";
+    if (imageUrl && !imageUrl.startsWith("http") && typeof window !== "undefined") {
+      imageUrl = `${window.location.origin}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
+    }
 
-    let message = `Hello, I am interested in the following product:\n\n`;
-    message += `Product: ${product.name}\n`;
-    message += `Category: ${categoryName}\n`;
-    message += `Price: ${priceStr}\n`;
-    if (truncDesc) message += `Description: ${truncDesc}\n`;
+    let message = "Hello, I'd like to place an order from my cart:\n\n";
+    message += `1. *${product.name}*\n`;
+    if (selectedSize) message += `   Size: ${selectedSize}\n`;
+    if (selectedColor) message += `   Color: ${selectedColor}\n`;
+    message += `   Quantity: 1\n`;
+    message += `   Price: ${priceStr}\n`;
+    if (imageUrl) message += `   Image: ${imageUrl}\n`;
     message += `\n`;
-
-    if (selectedSize) message += `Selected Size: ${selectedSize}\n`;
-    if (selectedColor) message += `Selected Color: ${selectedColor}\n`;
-    
-    if (selectedSize || selectedColor) message += "\n";
-
-    message += `Product Link:\n${pageUrl}\n\n`;
-    message += `Product Image:\n${imageUrl}\n\n`;
-    message += `Please provide more details.`;
+    message += `*Order Subtotal: ${priceStr}*\n\n`;
+    message += "Please provide payment and shipping details.";
 
     return encodeURIComponent(message);
   };
@@ -351,7 +345,7 @@ export default function SupabaseProductDetail({
             
             <div className="grid grid-cols-2 gap-3">
               <a 
-                href={`https://wa.me/919353812197?text=${generateInquiryMessage()}`}
+                href={`https://wa.me/916369726928?text=${generateInquiryMessage()}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] text-[10px] font-black uppercase tracking-widest text-black hover:brightness-110 transition-all shadow-md"
@@ -359,16 +353,21 @@ export default function SupabaseProductDetail({
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp Inquiry
               </a>
-              <a 
-                href={`https://ig.me/m/y4u_india?text=${generateInquiryMessage()}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  const msg = decodeURIComponent(generateInquiryMessage());
+                  navigator.clipboard.writeText(msg).then(() => {
+                    alert("Message copied to clipboard! Please paste it in the Instagram chat.");
+                    window.open("https://ig.me/m/y4u_india", "_blank");
+                  });
+                }}
                 className="flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white hover:brightness-110 transition-all shadow-md"
                 style={{ background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}
               >
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 Insta Inquiry
-              </a>
+              </button>
             </div>
           </div>
 
